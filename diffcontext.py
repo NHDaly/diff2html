@@ -63,6 +63,16 @@ while j < len(hunks):
     b_i += hunks[j][4]
     j+=1
 
+# Print out any unchanged lines after the last hunk.
+# Copy unchanged portion
+j-=1
+hunk_len = len(full_files[0]) - a_i;
+if a_i < len(full_files[0]):
+    write_line(out_lines, '\n@IdenticalHunk@:\n@@ -%d,%d +%d,%d @@\n' % (a_i + 1, hunk_len, b_i + 1, hunk_len))
+while a_i < len(full_files[0]):
+    write_line(out_lines, ' ' + full_files[0][a_i])
+    a_i+=1
+    b_i+=1
 
 #for line in out_lines:
     #sys.stdout.write(line)
