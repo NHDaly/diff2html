@@ -43,7 +43,7 @@ while j < len(hunks):
 
     # Copy unchanged portion
     hunk_len = hunks[j][1] - a_i - 1
-    write_line(out_lines, '@@ -%d,%d +%d,%d @@\n' % (a_i + 1, hunk_len, b_i + 1, hunk_len))
+    write_line(out_lines, '\n@IdenticalHunk@:\n@@ -%d,%d +%d,%d @@\n' % (a_i + 1, hunk_len, b_i + 1, hunk_len))
     while a_i < hunks[j][1] - 1:
         write_line(out_lines, ' ' + full_files[0][a_i])
         a_i+=1
