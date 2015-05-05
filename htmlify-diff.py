@@ -84,13 +84,13 @@ for line in sys.stdin:
             html_lines.append(identical_hunk_div)
         else:
             html_lines.append(hunk_div)
-        identical_hunk = False # reset
     elif line == '</pre>':
     	html_lines.append(close_hunk_div)
         html_lines.append(line)
         break
     else:
         html_lines.append(line)
+    identical_hunk = False # reset
 
 for line in sys.stdin:
     line = line.strip()

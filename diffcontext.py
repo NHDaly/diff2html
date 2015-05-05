@@ -52,7 +52,7 @@ while j < len(hunks):
 
     # Insert diff content lines until next hunk.
     extra_lines = 1 # Don't double count the diff lines (one "-" and one "+").
-    while i < hunks[j][0] + hunks[j][2] + extra_lines:
+    while i < hunks[j][0] + max(hunks[j][2], hunks[j][4]) + extra_lines:
         write_line(out_lines, content_lines[i])
         if (content_lines[i][0] == "-"):
         	extra_lines += 1;
@@ -65,7 +65,6 @@ while j < len(hunks):
 
 # Print out any unchanged lines after the last hunk.
 # Copy unchanged portion
-j-=1
 hunk_len = len(full_files[0]) - a_i;
 if a_i < len(full_files[0]):
     write_line(out_lines, '\n@IdenticalHunk@:\n@@ -%d,%d +%d,%d @@\n' % (a_i + 1, hunk_len, b_i + 1, hunk_len))
