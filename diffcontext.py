@@ -42,19 +42,16 @@ while j < len(hunks):
         i+=1
 
     # Copy unchanged portion
-    hunk_len = hunks[j][1] - a_i
-    write_line(out_lines, '@@ -%d,%d +%d,%d @@\n' % (a_i, hunk_len, b_i, hunk_len))
+    hunk_len = hunks[j][1] - a_i - 1
+    write_line(out_lines, '@@ -%d,%d +%d,%d @@\n' % (a_i + 1, hunk_len, b_i + 1, hunk_len))
     while a_i < hunks[j][1] - 1:
-        if (a_i == (hunks[j][1] + hunk_len) / 2):
-            write_line(out_lines, '-  fakeA\n+  fakeB\n')
-        else:
-        	write_line(out_lines, full_files[0][a_i])
+        write_line(out_lines, ' ' + full_files[0][a_i])
         a_i+=1
         b_i+=1
 
     # update unchanged portion marker to after diff hunk.
-    a_i += hunks[j][2] + 1
-    b_i += hunks[j][4] + 1
+    a_i += hunks[j][2]
+    b_i += hunks[j][4]
     j+=1
 
 
