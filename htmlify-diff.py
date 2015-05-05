@@ -32,7 +32,7 @@ function toggleVisibility(elt){
     var children = elt.children;
     for (i = 0; i < children.length; i++) {
         var s = children[i].style;
-        s.display = s.display==='none' ? 'block' : 'none';
+        s.display = s.display==='block' ? 'none' : 'block';
     }
 }
 
